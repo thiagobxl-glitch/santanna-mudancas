@@ -29,6 +29,7 @@ async function loadData() {
         const formatPhone = siteData.phone;
         document.getElementById('contact-phone').textContent = formatPhone;
         document.getElementById('footer-phone').textContent = formatPhone;
+        document.getElementById('header-company-name').textContent = siteData.companyName || 'SANTANNA MUDANÇAS E TRANSPORTES';
         
         const waLink = `https://wa.me/${siteData.whatsappNumber}?text=${encodeURIComponent(siteData.whatsappMessage)}`;
         document.getElementById('hero-whatsapp-btn').href = waLink;
