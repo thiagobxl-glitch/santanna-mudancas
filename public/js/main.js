@@ -116,7 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
             const data = {
                 name: document.getElementById('quote-name').value,
-                phone: document.getElementById('quote-phone').value,
+                phone: phoneRaw,
                 description: document.getElementById('quote-desc').value
             };
             
