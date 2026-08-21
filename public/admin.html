@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel Admin - Santanna Mudanças</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        body { background: #f0f4f8; }
+        .admin-container { max-width: 800px; margin: 40px auto; padding: 24px; }
+        .admin-card { background: white; padding: 32px; border-radius: var(--radius); box-shadow: var(--shadow); margin-bottom: 24px; }
+        .hidden { display: none !important; }
+        .admin-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
+        h1 { color: var(--secondary); font-size: 1.8rem; }
+        .section-title-sm { margin: 24px 0 16px; border-bottom: 1px solid var(--border); padding-bottom: 8px; font-weight: 600; color: var(--primary); }
+        .success-toast { background: #10B981; color: white; padding: 16px; border-radius: 8px; position: fixed; bottom: 20px; right: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); transform: translateY(100px); opacity: 0; transition: all 0.3s; z-index: 1000;}
+        .success-toast.show { transform: translateY(0); opacity: 1; }
+    </style>
+</head>
+<body>
+
+    <div class="admin-container">
+        
+        <!-- Login View -->
+        <div id="login-view" class="admin-card">
+            <div style="text-align: center; margin-bottom: 24px;">
+                <img src="/images/logo.png" style="height: 60px; filter: brightness(0) saturate(100%) invert(13%) sepia(50%) saturate(1478%) hue-rotate(189deg) brightness(98%) contrast(98%);">
+                <h1 style="margin-top: 16px;">Painel Administrativo</h1>
+                <p style="color: var(--text-muted)">Digite a senha para gerenciar os textos do site.</p>
+            </div>
+            
+            <form id="login-form" onsubmit="login(event)">
+                <div class="form-group">
+                    <input type="password" id="password-input" class="form-input" placeholder="Senha" required>
+                </div>
+                <div id="login-error" style="color: red; margin-bottom: 12px; font-size: 0.9rem;" class="hidden">Senha incorreta!</div>
+                <button type="submit" class="btn btn-primary" style="width: 100%">Entrar</button>
+            </form>
+        </div>
+
+        <!-- Dashboard View -->
+        <div id="dashboard-view" class="hidden">
+            <div class="admin-header">
+                <h1>Gerenciar Site</h1>
+                <div style="display:flex; gap: 8px;">
+                    <a href="/" target="_blank" class="btn" style="background:#E2E8F0; color: var(--text-main);">Ver Site</a>
+                    <button class="btn btn-primary" onclick="saveData()">Salvar Alterações</button>
+                </div>
+            </div>
+
+            <div class="admin-card">
+                <h2 class="section-title-sm">Informações de Contato</h2>
+                <div class="form-group">
+                    <label class="form-label">Nome da Empresa</label>
+                    <input type="text" id="admin-companyName" class="form-input">
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                    <div class="form-group">
+                        <label class="form-label">Telefone de Exibição</label>
+                        <input type="text" id="admin-phone" class="form-input" placeholder="(61) 99128-3032">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Número do WhatsApp (Apenas Números com DDD)</label>
+                        <input type="text" id="admin-whatsappNumber" class="form-input" placeholder="5561991283032">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Mensagem Padrão do WhatsApp (Hero banner)</label>
+                    <input type="text" id="admin-whatsappMessage" class="form-input">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Link do Instagram</label>
+                    <input type="text" id="admin-instagram" class="form-input">
+                </div>
+
+                <h2 class="section-title-sm">Identidade Visual e Imagens Principais</h2>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px;">
+                    <div style="border:1px solid var(--border); padding:16px; border-radius:8px; text-align:center;">
+                        <img id="preview-logo" src="/images/logo.png" style="max-height:60px; margin-bottom:12px; max-width:100%; object-fit:contain;">
+                        <br>
+                        <input type="file" id="logo-upload" accept="image/*" style="display:none;" onchange="uploadSpecialImage(event, 'logoImage')">
+                        <button class="btn btn-primary btn-sm" onclick="document.getElementById('logo-upload').click()">Alterar Logo / Favicon</button>
+                    </div>
+                    <div style="border:1px solid var(--border); padding:16px; border-radius:8px; text-align:center;">
+                        <img id="preview-hero" src="/images/caminhao-2.jpg" style="max-height:60px; margin-bottom:12px; max-width:100%; object-fit:cover; border-radius:4px;">
+                        <br>
+                        <input type="file" id="hero-upload" accept="image/*" style="display:none;" onchange="uploadSpecialImage(event, 'heroImage')">
+                        <button class="btn btn-primary btn-sm" onclick="document.getElementById('hero-upload').click()">Alterar Imagem de Fundo</button>
+                    </div>
+                </div>
+
+                <h2 class="section-title-sm">Banner Principal (Textos)</h2>
+                <div class="form-group">
+                    <label class="form-label">Título Principal</label>
+                    <input type="text" id="admin-heroTitle" class="form-input">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Subtítulo</label>
+                    <textarea id="admin-heroSubtitle" class="form-input" rows="3"></textarea>
+                </div>
+            </div>
+
+            <div class="admin-card">
+                <div style="display:flex; justify-content:space-between; align-items:center; border-bottom: 1px solid var(--border); margin-bottom: 16px; padding-bottom:8px;">
+                    <h2 style="margin:0; font-size:1.2rem; color:var(--primary);">Galeria de Fotos</h2>
+                    <div>
+                        <input type="file" id="image-upload" accept="image/*" style="display:none;" onchange="uploadImage(event)">
+                        <button class="btn btn-primary btn-sm" onclick="document.getElementById('image-upload').click()">+ Adicionar Foto</button>
+                    </div>
+                </div>
+                <div id="admin-gallery" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 16px;">
+                    <!-- Gallery items here -->
+                </div>
+            </div>
+            
+            <p style="text-align: center; color: var(--text-muted); font-size: 0.9rem;">
+                * As alterações de textos precisam ser salvas no botão "Salvar Alterações". As imagens são alteradas instantaneamente.
+            </p>
+        </div>
+    </div>
+
+    <div id="toast" class="success-toast">Alterações salvas com sucesso! As mudanças já estão no ar.</div>
+
+    <script src="/js/admin.js"></script>
+</body>
+</html>

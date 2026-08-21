@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Santanna Mudanças e Transportes</title>
+    <meta name="description" content="Especialistas em mudanças residenciais, comerciais e interestaduais. Mais de 20 anos de experiência com qualidade e segurança.">
+    <link rel="stylesheet" href="/css/style.css">
+    <link id="favicon" rel="icon" href="/images/logo.png" type="image/png">
+</head>
+<body>
+
+    <header>
+        <div class="container header-inner">
+            <a href="/" class="logo">
+                <img id="main-logo" src="/images/logo.png" alt="Santanna Mudanças">
+            </a>
+            <div class="header-actions">
+                <a href="javascript:void(0)" onclick="scrollToForm()" class="btn btn-primary" id="header-btn"><i class="ri-truck-line"></i> Solicitar Orçamento</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-bg-accent"></div>
+        <div class="container hero-content">
+            <div class="hero-text">
+                <h1 id="hero-title" data-skeleton>Sua Mudança com Segurança e Rapidez</h1>
+                <p id="hero-subtitle" data-skeleton>Mais de 20 anos de experiência realizando mudanças com excelência.</p>
+                <div style="display:flex; gap:16px; flex-wrap:wrap;">
+                    <a href="javascript:void(0)" onclick="scrollToForm()" class="btn btn-primary"><i class="ri-file-list-3-line"></i> Fazer Orçamento</a>
+                    <a id="hero-whatsapp-btn" href="#" target="_blank" class="btn btn-whatsapp"><i class="ri-whatsapp-line"></i> Chamar no WhatsApp</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img id="hero-img" src="/images/caminhao-2.jpg" alt="Caminhão Santanna">
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="padding-top:0; position:relative; z-index:10;">
+        <div class="container">
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="ri-shield-check-line"></i></div>
+                    <h3>+20 Anos de Experiência</h3>
+                    <p>Tradição e confiança que garantem que seus bens chegarão intactos ao destino.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="ri-bank-card-line"></i></div>
+                    <h3>Em até 12x no Cartão</h3>
+                    <p>Facilitamos o pagamento da sua mudança com as melhores taxas do mercado.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="ri-customer-service-2-line"></i></div>
+                    <h3>Orçamento Sem Compromisso</h3>
+                    <p>Avaliação justa e transparente para sua mudança, sem surpresas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="servicos">
+        <div class="container">
+            <h2 class="section-title">Nossos Serviços</h2>
+            <p class="section-subtitle">Oferecemos soluções completas para todos os tipos de mudanças e transportes, garantindo sua tranquilidade.</p>
+            
+            <div class="services-grid" id="services-container">
+                <!-- Services will be loaded via JS -->
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="background:var(--surface);">
+        <div class="container">
+            <h2 class="section-title">Nossa Frota e Estrutura</h2>
+            <p class="section-subtitle">Caminhões adequados e embalagens seguras para a sua mudança.</p>
+            <div class="gallery-grid" id="gallery-container">
+                <!-- Gallery items will be loaded via JS -->
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section" id="contato">
+        <div class="container cta-container">
+            <div class="cta-text">
+                <h2>Pronto para mudar?</h2>
+                <p>Preencha os dados abaixo e entraremos em contato via WhatsApp instantaneamente para planejar a sua mudança com total segurança e o melhor custo-benefício.</p>
+                <div style="display:flex; align-items:center; gap:16px; margin-top:24px;">
+                    <div style="width:64px; height:64px; background:rgba(255,255,255,0.1); border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:32px; color:var(--primary);">
+                        <i class="ri-phone-line"></i>
+                    </div>
+                    <div>
+                        <span style="display:block; font-size:0.9rem; color:#94A3B8;">Ligue para nós</span>
+                        <strong style="font-size:1.5rem;" id="contact-phone" data-skeleton>--</strong>
+                    </div>
+                </div>
+            </div>
+            <div class="cta-form-card">
+                <h3>Solicite seu Orçamento</h3>
+                <form id="lead-form" onsubmit="submitForm(event)">
+                    <div class="form-group">
+                        <label class="form-label">Seu Nome Completo</label>
+                        <input type="text" id="form-name" class="form-input" placeholder="Ex: João da Silva" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Seu WhatsApp</label>
+                        <input type="text" id="form-phone" class="form-input" placeholder="(00) 00000-0000" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Tipo de Mudança</label>
+                        <select id="form-type" class="form-input" required>
+                            <option value="">Selecione...</option>
+                            <option value="Residencial">Residencial</option>
+                            <option value="Comercial">Comercial</option>
+                            <option value="Interestadual">Interestadual</option>
+                            <option value="Outro">Outro</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width:100%; font-size:1.1rem; padding:16px; margin-top:16px;">
+                        <i class="ri-whatsapp-line"></i> Enviar pelo WhatsApp
+                    </button>
+                    <p style="text-align:center; font-size:0.85rem; color:var(--text-muted); margin-top:16px;">
+                        Você será redirecionado para o nosso WhatsApp com os dados preenchidos.
+                    </p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <a href="/" class="footer-logo"><img id="footer-logo" src="/images/logo.png" alt="Santanna Mudanças"></a>
+                    <p>Referência em transporte e mudanças no Brasil. Rapidez, segurança e pontualidade na entrega dos seus bens.</p>
+                    <div class="social-links">
+                        <a id="footer-instagram" href="#" target="_blank" class="social-link"><i class="ri-instagram-line"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="footer-title">Serviços</h4>
+                    <ul class="footer-links">
+                        <li><a href="#servicos">Residencial</a></li>
+                        <li><a href="#servicos">Comercial</a></li>
+                        <li><a href="#servicos">Interestadual</a></li>
+                        <li><a href="#servicos">Embalagem</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-title">Contato</h4>
+                    <ul class="footer-links">
+                        <li><i class="ri-whatsapp-line"></i> <span id="footer-phone" data-skeleton>--</span></li>
+                        <li><i class="ri-map-pin-line"></i> Brasília - DF e todo o Brasil</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                &copy; <span id="current-year"></span> Santanna Mudanças e Transportes. Todos os direitos reservados.
+            </div>
+        </div>
+    </footer>
+
+    <script src="/js/main.js"></script>
+</body>
+</html>
