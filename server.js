@@ -111,6 +111,27 @@ app.post('/api/data', checkAuth, (req, res) => {
   });
 });
 
+// API para receber orçamentos e enviar para webhook
+app.post('/api/quote', async (req, res) => {
+    try {
+        const { name, phone, description } = req.body;
+        const dataJson = fs.readFileSync(DATA_FILE, 'utf8');
+        const siteData = JSON.parse(dataJson);
+        
+        if (siteData.webhookUrl) {
+            await fetch(siteData.webhookUrl, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ name, phone, description, source: 'Site Santanna' })
+            });
+        }
+        res.json({ success: true });
+    } catch (err) {
+        console.error('Erro no webhook:', err);
+        res.status(500).json({ error: 'Erro ao processar orçamento' });
+    }
+});
+
 // API para listar imagens da galeria
 app.get('/api/images', (req, res) => {
   fs.readdir(IMAGES_DIR, (err, files) => {

@@ -101,31 +101,21 @@
             </div>
             <div class="cta-form-card">
                 <h3>Solicite seu Orçamento</h3>
-                <form id="lead-form" onsubmit="submitForm(event)">
+                <form id="quote-form" class="quote-form">
                     <div class="form-group">
-                        <label class="form-label">Seu Nome Completo</label>
-                        <input type="text" id="form-name" class="form-input" placeholder="Ex: João da Silva" required>
+                        <label>Seu Nome Completo</label>
+                        <input type="text" id="quote-name" class="form-control" placeholder="Ex: João da Silva" required>
                     </div>
                     <div class="form-group">
-                        <label class="form-label">Seu WhatsApp</label>
-                        <input type="text" id="form-phone" class="form-input" placeholder="(00) 00000-0000" required>
+                        <label>Seu Telefone/WhatsApp</label>
+                        <input type="tel" id="quote-phone" class="form-control" placeholder="(00) 00000-0000" required>
                     </div>
                     <div class="form-group">
-                        <label class="form-label">Tipo de Mudança</label>
-                        <select id="form-type" class="form-input" required>
-                            <option value="">Selecione...</option>
-                            <option value="Residencial">Residencial</option>
-                            <option value="Comercial">Comercial</option>
-                            <option value="Interestadual">Interestadual</option>
-                            <option value="Outro">Outro</option>
-                        </select>
+                        <label>Descrição da Mudança</label>
+                        <textarea id="quote-desc" class="form-control" rows="3" placeholder="O que você precisa transportar? De onde para onde?" required style="resize: vertical;"></textarea>
                     </div>
-                    <button type="submit" class="btn btn-primary" style="width:100%; font-size:1.1rem; padding:16px; margin-top:16px;">
-                        <i class="ri-whatsapp-line"></i> Enviar pelo WhatsApp
-                    </button>
-                    <p style="text-align:center; font-size:0.85rem; color:var(--text-muted); margin-top:16px;">
-                        Você será redirecionado para o nosso WhatsApp com os dados preenchidos.
-                    </p>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;"><i class="ri-send-plane-fill"></i> Enviar Solicitação</button>
+                    <p style="font-size: 0.85rem; color: var(--text-muted); text-align: center; margin-top: 16px; margin-bottom: 0;" id="quote-feedback">Nossa equipe entrará em contato rapidamente.</p>
                 </form>
             </div>
         </div>

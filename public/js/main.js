@@ -89,6 +89,49 @@ function scrollToForm() {
     document.getElementById('form-name').focus();
 }
 
+// Manipulação do Formulário
+document.addEventListener('DOMContentLoaded', () => {
+    const quoteForm = document.getElementById('quote-form');
+    if (quoteForm) {
+        quoteForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = quoteForm.querySelector('button[type="submit"]');
+            const feedback = document.getElementById('quote-feedback');
+            
+            const data = {
+                name: document.getElementById('quote-name').value,
+                phone: document.getElementById('quote-phone').value,
+                description: document.getElementById('quote-desc').value
+            };
+            
+            btn.disabled = true;
+            btn.innerHTML = '<i class="ri-loader-4-line ri-spin"></i> Enviando...';
+            
+            try {
+                const res = await fetch('/api/quote', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+                
+                if (res.ok) {
+                    feedback.style.color = 'green';
+                    feedback.textContent = 'Solicitação enviada com sucesso! Entraremos em contato em breve.';
+                    quoteForm.reset();
+                } else {
+                    throw new Error('Erro ao enviar');
+                }
+            } catch (err) {
+                feedback.style.color = 'red';
+                feedback.textContent = 'Ocorreu um erro ao enviar. Tente novamente mais tarde.';
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = '<i class="ri-send-plane-fill"></i> Enviar Solicitação';
+            }
+        });
+    }
+});
+
 function submitForm(event) {
     event.preventDefault();
     

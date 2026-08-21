@@ -160,6 +160,7 @@ function populateForm() {
     document.getElementById('admin-instagram').value = currentData.instagram || '';
     document.getElementById('admin-heroTitle').value = currentData.heroTitle || '';
     document.getElementById('admin-heroSubtitle').value = currentData.heroSubtitle || '';
+    document.getElementById('admin-webhookUrl').value = currentData.webhookUrl || '';
     
     if(currentData.logoImage) document.getElementById('preview-logo').src = `/images/${currentData.logoImage}`;
     if(currentData.heroImage) document.getElementById('preview-hero').src = `/images/${currentData.heroImage}`;
@@ -174,6 +175,7 @@ async function saveData() {
     currentData.instagram = document.getElementById('admin-instagram').value;
     currentData.heroTitle = document.getElementById('admin-heroTitle').value;
     currentData.heroSubtitle = document.getElementById('admin-heroSubtitle').value;
+    currentData.webhookUrl = document.getElementById('admin-webhookUrl').value;
     
     try {
         const res = await fetch('/api/data', {
