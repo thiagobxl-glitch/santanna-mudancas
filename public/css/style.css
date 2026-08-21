@@ -97,6 +97,10 @@ footer { background: #07111F; color: #94A3B8; padding: 48px 0 24px; }
 .footer-links li { margin-bottom: 12px; }
 .footer-links a { color: #94A3B8; text-decoration: none; transition: color 0.2s ease; }
 .footer-links a:hover { color: white; }
+/* Desktop Header additions */
+.header-company { flex: 1; text-align: center; padding: 0 16px; }
+#header-company-name { font-weight: 900; font-size: 1.4rem; color: var(--secondary); text-transform: uppercase; }
+
 .footer-bottom { text-align: center; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 0.9rem; }
 
 /* Responsive */
@@ -108,6 +112,14 @@ footer { background: #07111F; color: #94A3B8; padding: 48px 0 24px; }
   .footer-grid { grid-template-columns: 1fr; }
   .hero-text h1 { font-size: 2.5rem; }
   .hero { padding: 60px 0; }
+  
+  /* Fix header mobile */
+  .header-inner { flex-direction: column; height: auto; padding: 16px 0; gap: 12px; }
+  #header-company-name { font-size: 1.1rem; }
+  
+  /* Fix hero image mobile overflow */
+  .hero-image { transform: none; width: 100%; max-width: 100%; margin-top: 16px; }
+  .hero-image:hover { transform: none; }
 }
 
 [data-skeleton] { background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%); background-size: 200% 100%; animation: loading 1.5s infinite; color: transparent !important; user-select: none; border-radius: 4px; display: inline-block; }
