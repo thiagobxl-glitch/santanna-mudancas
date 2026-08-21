@@ -91,12 +91,28 @@ function scrollToForm() {
 
 // Manipulação do Formulário
 document.addEventListener('DOMContentLoaded', () => {
+    const quotePhone = document.getElementById('quote-phone');
+    if (quotePhone) {
+        quotePhone.addEventListener('input', function (e) {
+            let x = e.target.value.replace(/\D/g, '').match(/(\d{0,2})(\d{0,5})(\d{0,4})/);
+            e.target.value = !x[2] ? x[1] : '(' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : '');
+        });
+    }
+
     const quoteForm = document.getElementById('quote-form');
     if (quoteForm) {
         quoteForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             const btn = quoteForm.querySelector('button[type="submit"]');
             const feedback = document.getElementById('quote-feedback');
+            
+            // Validation: DDD + 8 or 9 digits (total 10 or 11 digits)
+            const phoneRaw = document.getElementById('quote-phone').value.replace(/\D/g, '');
+            if (phoneRaw.length < 10 || phoneRaw.length > 11) {
+                feedback.style.color = 'red';
+                feedback.textContent = 'Por favor, insira um telefone válido com DDD.';
+                return;
+            }
             
             const data = {
                 name: document.getElementById('quote-name').value,
