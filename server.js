@@ -40,6 +40,27 @@ app.use(express.json());
 // Servir imagens do volume persistente PRIMEIRO (sobrepondo a rota padrão)
 app.use('/images', express.static(IMAGES_DIR));
 
+app.get('/', (req, res) => {
+    fs.readFile(DATA_FILE, 'utf8', (err, dataJson) => {
+        if(err) return res.sendFile(path.join(__dirname, 'public', 'index.html'));
+        const siteData = JSON.parse(dataJson);
+        fs.readFile(path.join(__dirname, 'public', 'index.html'), 'utf8', (err, html) => {
+            if(err) return res.status(500).send('Erro');
+            
+            // Simples injeção de SSR
+            let finalHtml = html;
+            if(siteData.heroTitle) finalHtml = finalHtml.replace(/Sua Mudança com Segurança e Rapidez/g, siteData.heroTitle);
+            if(siteData.heroSubtitle) finalHtml = finalHtml.replace(/Mais de 20 anos de experiência realizando mudanças residenciais, comerciais e interestaduais com excelência\./g, siteData.heroSubtitle);
+            if(siteData.companyName) finalHtml = finalHtml.replace(/SANTANNA MUDANÇAS E TRANSPORTES/g, siteData.companyName.toUpperCase());
+            if(siteData.phone) finalHtml = finalHtml.replace(/\(61\) 99128-3032/g, siteData.phone);
+            if(siteData.heroImage) finalHtml = finalHtml.replace(/caminhao-2\.jpg/g, siteData.heroImage);
+            if(siteData.logoImage) finalHtml = finalHtml.replace(/logo\.png/g, siteData.logoImage);
+            
+            res.send(finalHtml);
+        });
+    });
+});
+
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Configurar multer para upload de imagens no Volume

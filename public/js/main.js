@@ -31,6 +31,9 @@ async function loadData() {
         document.getElementById('footer-phone').textContent = formatPhone;
         document.getElementById('header-company-name').textContent = siteData.companyName || 'SANTANNA MUDANÇAS E TRANSPORTES';
         
+        // Remove skeleton loader after data is loaded
+        document.querySelectorAll('[data-skeleton]').forEach(el => el.removeAttribute('data-skeleton'));
+        
         const waLink = `https://wa.me/${siteData.whatsappNumber}?text=${encodeURIComponent(siteData.whatsappMessage)}`;
         document.getElementById('hero-whatsapp-btn').href = waLink;
         
