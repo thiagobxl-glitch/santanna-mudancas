@@ -1,0 +1,37 @@
+{
+  "companyName": "Santanna Mudanças e Transportes",
+  "phone": "(61) 99128-3032",
+  "whatsappNumber": "5561991283032",
+  "instagram": "https://www.instagram.com/santanna_mudancas",
+  "logoImage": "logo.png",
+  "heroImage": "galeria-1787281384509-679905704.jpeg",
+  "heroTitle": "Sua Mudança com Segurança e Rapidez",
+  "heroSubtitle": "Mais de 20 anos de experiência realizando mudanças residenciais, comerciais e interestaduais com excelência.",
+  "whatsappMessage": "Olá! Gostaria de solicitar um orçamento para minha mudança.",
+  "services": [
+    {
+      "id": "residencial",
+      "title": "Mudanças Residenciais",
+      "description": "Tratamos os seus móveis como se fossem nossos. Cuidamos de cada detalhe da sua mudança para o novo lar.",
+      "icon": "ri-home-smile-line"
+    },
+    {
+      "id": "comercial",
+      "title": "Mudanças Comerciais",
+      "description": "Mudança rápida e organizada para o seu escritório ou empresa, minimizando o tempo de inatividade.",
+      "icon": "ri-building-4-line"
+    },
+    {
+      "id": "interestadual",
+      "title": "Mudanças Interestaduais",
+      "description": "Atendemos todo o Brasil. Mudanças exclusivas ou compartilhadas com total segurança na estrada.",
+      "icon": "ri-road-map-line"
+    },
+    {
+      "id": "montagem",
+      "title": "Embalagem e Montagem",
+      "description": "Nós embalamos tudo com material adequado e realizamos a montagem e desmontagem dos móveis.",
+      "icon": "ri-tools-line"
+    }
+  ]
+}
