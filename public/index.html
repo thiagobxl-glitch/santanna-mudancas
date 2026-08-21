@@ -11,12 +11,14 @@
 <body>
 
     <header>
-        <div class="container header-inner">
-            <a href="/" class="logo" style="display:flex; align-items:center; gap:16px; text-decoration:none;">
+        <div class="container header-inner" style="display: flex; align-items: center; justify-content: space-between;">
+            <a href="/" class="logo" style="display:flex; align-items:center; text-decoration:none; flex-shrink: 0;">
                 <img id="main-logo" src="/images/logo.png" alt="Santanna Mudanças" style="max-height:60px;">
-                <span id="header-company-name" style="font-weight: 900; font-size: 1.4rem; color: var(--secondary); text-transform: uppercase; display: flex; align-items: center;" data-skeleton>SANTANNA MUDANÇAS E TRANSPORTES</span>
             </a>
-            <div class="header-actions">
+            <div style="flex: 1; text-align: center; padding: 0 16px;">
+                <span id="header-company-name" style="font-weight: 900; font-size: 1.4rem; color: var(--secondary); text-transform: uppercase;" data-skeleton>SANTANNA MUDANÇAS E TRANSPORTES</span>
+            </div>
+            <div class="header-actions" style="flex-shrink: 0;">
                 <a href="javascript:void(0)" onclick="scrollToForm()" class="btn btn-primary" id="header-btn"><i class="ri-truck-line"></i> Solicitar Orçamento</a>
             </div>
         </div>
