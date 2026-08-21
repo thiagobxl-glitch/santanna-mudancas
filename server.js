@@ -142,7 +142,14 @@ app.post('/api/quote', async (req, res) => {
 app.get('/api/images', (req, res) => {
   fs.readdir(IMAGES_DIR, (err, files) => {
     if (err) return res.status(500).json({ error: 'Erro ao listar imagens' });
-    const images = files.filter(f => f.match(/\.(jpg|jpeg|png|gif)$/i) && f !== 'logo.png');
+    
+    let heroImage = '';
+    try {
+        const siteData = JSON.parse(fs.readFileSync(DATA_FILE, 'utf8'));
+        heroImage = siteData.heroImage || '';
+    } catch(e) {}
+    
+    const images = files.filter(f => f.match(/\.(jpg|jpeg|png|gif)$/i) && f !== 'logo.png' && f !== heroImage);
     res.json(images);
   });
 });
