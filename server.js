@@ -122,7 +122,13 @@ app.post('/api/quote', async (req, res) => {
             await fetch(siteData.webhookUrl, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ name, phone, description, source: 'Site Santanna' })
+                body: JSON.stringify({ 
+                    name, 
+                    phone, 
+                    description, 
+                    source: 'Site Santanna',
+                    "whatsapp da empresa": siteData.whatsappNumber 
+                })
             });
         }
         res.json({ success: true });
